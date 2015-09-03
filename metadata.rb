@@ -3,3 +3,4 @@ version '0.1.0'
 
 depends 'git'
 depends 'apt'
+depends 'odi-users'
