@@ -25,8 +25,8 @@ describe file '/home/services-manager/services-manager.theodi.org/current/vendor
   it { should be_directory }
   it { should be_owned_by 'services-manager' }
 end
-###
-###describe file '/home/directory/directory.theodi.org/shared/log' do
-###  it { should be_directory }
-###  it { should be_owned_by 'directory' }
-###end
+
+describe file '/home/services-manager/services-manager.theodi.org/shared/log' do
+  it { should be_directory }
+  it { should be_owned_by 'services-manager' }
+end

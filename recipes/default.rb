@@ -66,4 +66,16 @@ deploy_revision "/home/#{user}/#{fqdn}" do
       cwd current_release_directory
     end
   end
+
+  before_restart do
+    current_release_directory = release_path
+    port = node['start_port']
+    concurrency = node['concurrency']
+
+    foremanise user do
+      cwd current_release_directory
+      port port
+      concurrency concurrency
+    end
+  end
 end
