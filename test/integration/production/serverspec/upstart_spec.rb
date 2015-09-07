@@ -18,28 +18,17 @@ describe file '/etc/init/services-manager-web-1.conf' do
   it { should be_file }
   its(:content) { should match /start on starting services-manager-web/ }
   its(:content) { should match /exec su - services-manager -c 'cd \/home\/services-manager\/services-manager.theodi.org\// }
-  its(:md5sum) { should eq '5c239a7ba0a1358d3324f7c1ee0d842a' }
+  its(:md5sum) { should eq '12b6e99f7c65321cc4cf615f44c7b13c' }
 end
 
 describe file '/etc/init/services-manager-scheduler-1.conf' do
   it { should be_file }
   its(:content) { should match /start on starting services-manager-scheduler/ }
-  its(:md5sum) { should eq '1352baa5592d3f8e5f6230f62c674576' }
+  its(:md5sum) { should eq 'bb27883840f509157868abdf1ced8253' }
 end
 
 describe file '/etc/init/services-manager-worker-4.conf' do
   it { should be_file }
   its(:content) { should match /start on starting services-manager-worker/ }
-  its(:md5sum) { should eq '36a07a64e85a1f8952c978cb7d7b6d5a' }
+  its(:md5sum) { should eq '37527e7fff53c8facc7e429863a9f81c' }
 end
-
-###
-###describe file '/etc/init/services-manager-thin-1.conf' do
-###  it { should be_file }
-###  its(:content) { should match /start on starting services-manager-thin/ }
-###  its(:content) { should match /exec su - services-manager -c/ }
-###  its(:content) { should match /PORT=8001/ }
-###  its(:content) { should match /RACK_ENV=production/ }
-###  its(:content) { should match /RAILS_ENV=production/ }
-###  its(:content) { should match /bundle exec thin start -p \$PORT >> \/var\/log\/services-manager\/thin-2.log 2>&1/ }
-###end

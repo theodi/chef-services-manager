@@ -78,4 +78,6 @@ deploy_revision "/home/#{user}/#{fqdn}" do
       concurrency concurrency
     end
   end
+
+  restart_command "sudo service #{user} restart"
 end

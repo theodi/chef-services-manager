@@ -16,9 +16,7 @@ define :foremanise, :params => {} do
       bundle exec foreman export \
         -a #{params[:name]} \
         -u #{params[:name]} \
-        -p #{params[:port]} \
         -c worker=4,scheduler=1,web=1 \
-        -e #{params[:cwd]}/.env \
         upstart /tmp/init
     EOF
   end

@@ -2,6 +2,17 @@
   "id": "services-manager-prod",
   "content" : {
     "rack_env": "production",
-    "rails_env": "production"
+    "rails_env": "production",
+    "capsulecrm" : {
+      "account_name" : "theodi",
+      "api_token" : "abcdefabcdefabcdefabcdefabcdefab"
+    },
+    "resque": {
+      "redis": {
+        "host": "pub-redis-13290.us-east-1-4.6.ec2.redislabs.com",
+        "port": "13290",
+        "password": "yuzKal9OshghedTyosEd"
+      }
+    }
   }
 }
