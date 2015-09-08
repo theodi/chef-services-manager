@@ -2,6 +2,7 @@ user = node['user']
 group = node['user']
 fqdn = node['fully_qualified_domain_name']
 
+include_recipe 'nginx'
 include_recipe 'odi-users'
 include_recipe 'apt'
 include_recipe 'git'
@@ -76,6 +77,12 @@ deploy_revision "/home/#{user}/#{fqdn}" do
       cwd current_release_directory
       port port
       concurrency concurrency
+    end
+
+    make_vhosts do
+      cwd current_release_directory
+      user user
+      fqdn fqdn
     end
   end
 

@@ -1,0 +1,19 @@
+upstream <%= @servername %> {
+  server 127.0.0.1:<%= @port %>;
+}
+
+server {
+  listen 80 default;
+  server_name <%= @fqdn %>;
+  access_log /var/log/nginx/<%= @fqdn %>.log;
+  error_log /var/log/nginx/<%= @fqdn %>.err;
+  location / {
+    try_files $uri @backend;
+  }
+
+  location @backend {
+    proxy_set_header X-Forwarded-Proto 'http';
+    proxy_set_header Host $server_name;
+    proxy_pass http://<%= @servername %>;
+  }
+}

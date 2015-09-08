@@ -1,5 +1,6 @@
 default['user'] = 'services-manager'
 default['fully_qualified_domain_name'] = 'services-manager.theodi.org'
+default['start_port'] = 3000
 default['repo'] = 'theodi/services-manager'
 default['concurrency'] = 1
 
