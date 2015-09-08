@@ -16,7 +16,3 @@ end
 describe command 'sudo apt-get install curl && curl --location --silent -I http://localhost | grep "401 Unauthorized"' do
   its(:stdout) { should match /401 Unauthorized/ }
 end
-
-#describe command 'wget -qO- http://localhost' do
-#  its(:stdout) {should match /<title>ODI Member Directory<\/title>/ }
-#end
