@@ -4,6 +4,8 @@ fqdn = node['fully_qualified_domain_name']
 
 include_recipe 'skellington'
 
+include_recipe 'odi-cert-deployer'
+
 deploy_revision "/home/#{user}/#{fqdn}" do
   repo "git://github.com/#{node['repo']}"
   user user
@@ -58,4 +60,5 @@ deploy_revision "/home/#{user}/#{fqdn}" do
   end
 
   restart_command "sudo service #{user} restart"
+  notifies :restart, "service[nginx]"
 end
