@@ -17,3 +17,6 @@ default['envbuilder']['owner'] = 'services-manager'
 default['envbuilder']['group'] = 'services-manager'
 
 default['deployment']['revision'] = 'CURRENT'
+
+default['cert']['name'] = 'xero'
+default['cert']['file'] = 'privatekey.pem'
