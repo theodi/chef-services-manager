@@ -16,3 +16,7 @@ describe file '/etc/nginx/sites-enabled/services-manager.theodi.org' do
   its(:content) { should match /server_name services-manager.theodi.org;/ }
   its(:content) { should match /proxy_pass http:\/\/services-manager;/ }
 end
+
+describe file '/etc/nginx/sites-enabled/default' do
+  it { should_not exist }
+end

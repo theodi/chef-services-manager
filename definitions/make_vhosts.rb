@@ -24,7 +24,7 @@ define :make_vhosts, :params => {} do
     action :create
   end
 
-  file '/etc/nginx/sites-enabled/000-default' do
+  file '/etc/nginx/sites-enabled/default' do
     action :delete
   end
 
