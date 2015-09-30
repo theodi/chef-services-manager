@@ -35,7 +35,6 @@ deploy_revision "/home/#{user}/#{fqdn}" do
       user user
     end
 
-
     bundlify user do
       cwd current_release_directory
     end
