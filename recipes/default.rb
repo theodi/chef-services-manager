@@ -1,15 +1,11 @@
-user = node['user']
-group = node['user']
-fqdn = node['fully_qualified_domain_name']
-
 include_recipe 'skellington'
 
 include_recipe 'odi-cert-deployer'
 
-deploy_revision "/home/#{user}/#{fqdn}" do
+deploy_revision "/home/#{node['user']}/#{node['fully_qualified_domain_name']}" do
   repo "git://github.com/#{node['repo']}"
-  user user
-  group group
+  user node['user']
+  group node['user']
   revision node['deployment']['revision']
   action :force_deploy
 
@@ -18,24 +14,24 @@ deploy_revision "/home/#{user}/#{fqdn}" do
 
     bash 'Symlink env' do
       cwd release_path
-      user user
+      user node['user']
       code <<-EOF
-        ln -sf /home/#{user}/env .env
+        ln -sf /home/#{node['user']}/env .env
       EOF
     end
 
-    directory "/home/#{user}/#{fqdn}/shared/config/" do
+    directory "/home/#{node['user']}/#{node['fully_qualified_domain_name']}/shared/config/" do
       action :create
       recursive true
     end
 
-    directory "/home/#{user}/#{fqdn}/shared/log/" do
+    directory "/home/#{node['user']}/#{node['fully_qualified_domain_name']}/shared/log/" do
       action :create
       recursive true
-      user user
+      user node['user']
     end
 
-    bundlify user do
+    bundlify node['user'] do
       cwd current_release_directory
     end
   end
@@ -45,7 +41,7 @@ deploy_revision "/home/#{user}/#{fqdn}" do
     port = node['start_port']
     concurrency = node['concurrency']
 
-    foremanise user do
+    foremanise node['user'] do
       cwd current_release_directory
       port port
       concurrency concurrency
@@ -53,11 +49,11 @@ deploy_revision "/home/#{user}/#{fqdn}" do
 
     make_vhosts do
       cwd current_release_directory
-      user user
-      fqdn fqdn
+      user node['user']
+      fqdn node['fully_qualified_domain_name']
     end
   end
 
-  restart_command "sudo service #{user} restart"
+  restart_command "sudo service #{node['user']} restart"
   notifies :restart, "service[nginx]"
 end
