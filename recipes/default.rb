@@ -12,23 +12,9 @@ deploy_revision "/home/#{node['user']}/#{node['fully_qualified_domain_name']}" d
   before_migrate do
     current_release_directory = release_path
 
-    bash 'Symlink env' do
-      cwd release_path
-      user node['user']
-      code <<-EOF
-        ln -sf /home/#{node['user']}/env .env
-      EOF
-    end
-
-    directory "/home/#{node['user']}/#{node['fully_qualified_domain_name']}/shared/config/" do
-      action :create
-      recursive true
-    end
-
-    directory "/home/#{node['user']}/#{node['fully_qualified_domain_name']}/shared/log/" do
-      action :create
-      recursive true
-      user node['user']
+    pre_bundle node['user'] do
+      release_path current_release_directory
+      fully_qualified_domain_name node['fully_qualified_domain_name']
     end
 
     bundlify node['user'] do
