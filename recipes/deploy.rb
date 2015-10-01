@@ -3,7 +3,7 @@ deploy_revision "/home/#{node['user']}/#{node['fully_qualified_domain_name']}" d
   user node['user']
   group node['user']
   revision node['deployment']['revision']
-  action :force_deploy
+  action :deploy
 
   before_migrate do
     current_release_directory = release_path
