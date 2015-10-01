@@ -24,13 +24,11 @@ deploy_revision "/home/#{node['user']}/#{node['fully_qualified_domain_name']}" d
 
   before_restart do
     current_release_directory = release_path
-    port = node['start_port']
-    concurrency = node['concurrency']
 
     foremanise node['user'] do
       cwd current_release_directory
-      port port
-      concurrency concurrency
+      port node['start_port']
+      concurrency_string node['concurrency_string']
     end
 
     make_vhosts do
