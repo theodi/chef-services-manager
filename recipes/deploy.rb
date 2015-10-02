@@ -3,8 +3,13 @@ deploy_revision "/home/#{node['user']}/#{node['fully_qualified_domain_name']}" d
   user node['user']
   group node['user']
   revision node['deployment']['revision']
+  migrate node.has_key? :migrate
+  migration_command node['migrate']
   action :deploy
-
+  environment(
+    'RACK_ENV' => node['deployment']['rack_env']
+  )
+  
   before_migrate do
     current_release_directory = release_path
 
